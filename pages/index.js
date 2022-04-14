@@ -1,25 +1,74 @@
-import Head from 'next/head'
+import Head from "next/head";
+import { AppShell, Navbar, Header, Aside, Footer, Grid } from "@mantine/core";
 
 export default function Home() {
   return (
-    <div className="container">
-      <Head>
-        <title>Michigan Venture Club</title>
-        <link rel="icon" href="/icon.ico" />
-      </Head>
+    <>
+      <AppShell
+        padding="md"
+        header={
+          <Header height={60} p="m">
+            <Grid justify="flex-end" align="center">
+              <Grid.Col span={9} style={{}}>
+                Home (Logo)
+              </Grid.Col>
+              <Grid.Col span={1} style={{ background: "red" }}>
+                About Us
+              </Grid.Col>
+              <Grid.Col span={1} style={{}}>
+                Resources
+              </Grid.Col>
+              <Grid.Col span={1} style={{}}>
+                Contact
+              </Grid.Col>
+            </Grid>
+          </Header>
+        }
+        footer={
+          <Footer height={30} p="xs">
+            End
+          </Footer>
+        }
+        styles={(theme) => ({
+          main: {
+            backgroundColor:
+              theme.colorScheme === "dark"
+                ? theme.colors.dark[8]
+                : theme.colors.gray[0],
+          },
+        })}
+      >
+        <Head>
+          <title>Michigan Venture Club</title>
+          <link rel="icon" href="/icon.ico" />
+        </Head>
 
-      <main>
-        <h1 className="title">
-          Michigan Venture Club
-        </h1>
-        coming soon!
-
-      </main>
-
-      <footer>
-
-      </footer>
-
+        <main>
+          <h1 className="title">Michigan Venture Club</h1>
+          coming soon!
+          <p>
+            Michigan Venture Club aims to create an organization that connects
+            the campus and the Venture capital industry. It provides students
+            with the help of business practice, fund internship, experience
+            sharing, financing support and other aspects of Venture capital
+            growth. Our vision is to make the club a shortcut for students to
+            grow from campus into the venture capital industry, a cradle for
+            alumni to create opportunities and connections in the venture
+            capital industry. Our existing resources are mainly concentrated in
+            China. The most important resources are the venture capital fund of
+            family office with a scale of more than one billion. From 2008 to
+            now, the overall return is tens of times, and the annual return rate
+            is more than 30%, which involves in consumer, technology, medical
+            and other fields. In addition, we can invite well-known Chinese
+            investors and entrepreneurs to share, and provide internship
+            opportunities for those enterprises. Finally, we have a close
+            relationship with alumni organizations in China, such as the Beijing
+            Alumni Association and the first and second market alumni
+            association, which can better connect the campus and the industry
+            and help Umich alumni network
+          </p>
+        </main>
+      </AppShell>
       <style jsx>{`
         .container {
           min-height: 100vh;
@@ -165,6 +214,6 @@ export default function Home() {
           box-sizing: border-box;
         }
       `}</style>
-    </div>
-  )
+    </>
+  );
 }
