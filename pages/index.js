@@ -1,52 +1,113 @@
 import Head from "next/head";
-import { AppShell, Navbar, Header, Aside, Footer, Grid } from "@mantine/core";
+import React, { useState } from "react";
+import {
+  AppShell,
+  Button,
+  Navbar,
+  Header,
+  Footer,
+  Aside,
+  Group,
+  Image,
+  Text,
+  MediaQuery,
+  Burger,
+  useMantineTheme,
+} from "@mantine/core";
+import Link from "next/link";
 
 export default function Home() {
+  const theme = useMantineTheme();
+  const [opened, setOpened] = useState(false);
+
   return (
     <>
+      <Head>
+        <title>Michigan Venture Club</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <AppShell
-        padding="md"
-        header={
-          <Header height={60} p="m">
-            <Grid justify="flex-end" align="center">
-              <Grid.Col span={9} style={{}}>
-                Home (Logo)
-              </Grid.Col>
-              <Grid.Col span={1} style={{ background: "red" }}>
-                About Us
-              </Grid.Col>
-              <Grid.Col span={1} style={{}}>
-                Resources
-              </Grid.Col>
-              <Grid.Col span={1} style={{}}>
-                Contact
-              </Grid.Col>
-            </Grid>
-          </Header>
-        }
-        footer={
-          <Footer height={30} p="xs">
-            End
-          </Footer>
-        }
-        styles={(theme) => ({
+        styles={{
           main: {
-            backgroundColor:
+            background:
               theme.colorScheme === "dark"
                 ? theme.colors.dark[8]
                 : theme.colors.gray[0],
           },
-        })}
+        }}
+        navbarOffsetBreakpoint="sm"
+        asideOffsetBreakpoint="sm"
+        fixed
+        navbar={
+          <Navbar
+            p="md"
+            hiddenBreakpoint="sm"
+            hidden={!opened}
+            width={{ sm: 200, lg: 300 }}
+          >
+            <Group direction="column">
+              <Link href="/">
+                <Button variant="subtle" fullWidth={1}>
+                  Home
+                </Button>
+              </Link>
+              <Link href="/about">
+                <Button variant="subtle" fullWidth={1}>
+                  About Us
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button variant="subtle" fullWidth={1}>
+                  Contact
+                </Button>
+              </Link>
+            </Group>
+          </Navbar>
+        }
+        // aside={
+        //   <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+        //     <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
+        //       <Text>Application sidebar</Text>
+        //     </Aside>
+        //   </MediaQuery>
+        // }
+        footer={
+          <Footer height={60} p="md">
+            Application footer
+          </Footer>
+        }
+        header={
+          <Header height={70} p="md">
+            <div
+              style={{ display: "flex", alignItems: "center", height: "90%" }}
+            >
+              <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+                <Burger
+                  opened={opened}
+                  onClick={() => setOpened((o) => !o)}
+                  size="sm"
+                  color={theme.colors.gray[6]}
+                  mr="xl"
+                />
+              </MediaQuery>
+              <Link href="/">
+                <Image
+                  layout="responsive"
+                  width={200}
+                  height={60}
+                  radius="md"
+                  src="/long.png"
+                  alt="Logo"
+                />
+              </Link>
+            </div>
+          </Header>
+        }
       >
-        <Head>
-          <title>Michigan Venture Club</title>
-          <link rel="icon" href="/icon.ico" />
-        </Head>
-
         <main>
-          <h1 className="title">Michigan Venture Club</h1>
-          coming soon!
-          <p>
+          <h1 className="title">An Awesome Tagline</h1>
+
+          {/* <p>
             Michigan Venture Club aims to create an organization that connects
             the campus and the Venture capital industry. It provides students
             with the help of business practice, fund internship, experience
@@ -66,9 +127,10 @@ export default function Home() {
             Alumni Association and the first and second market alumni
             association, which can better connect the campus and the industry
             and help Umich alumni network
-          </p>
+          </p> */}
         </main>
       </AppShell>
+
       <style jsx>{`
         .container {
           min-height: 100vh;
